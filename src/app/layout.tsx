@@ -2,7 +2,7 @@ import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-
+import { UserProvider } from '@auth0/nextjs-auth0/client';
 import { TRPCReactProvider } from "~/trpc/react";
 
 export const metadata: Metadata = {
@@ -16,9 +16,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
+    <UserProvider>
       <body>
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
+      </UserProvider>
     </html>
   );
 }
